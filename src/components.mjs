@@ -1,4 +1,6 @@
 import { config } from './config.mjs';
+import { release } from './release.mjs';
+import { policyStatus } from './policy-status.mjs';
 export const esc = value => String(value).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const paths = {
   arrow: '<path d="M5 12h14m-6-6 6 6-6 6"/>',
@@ -29,31 +31,33 @@ const paths = {
   spark: '<path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5z"/>',
 };
 export const icon = (name, cls = '') => `<svg class="icon ${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name] || paths.file}</svg>`;
-export const mail = (subject = '', body = '') => `mailto:${config.email}${subject ? '?subject='+encodeURIComponent('[Adequora Writer] '+subject)+(body?'&body='+encodeURIComponent(body):'') : ''}`;
+export const mail = (subject = '', body = '') => subject==='의견 및 기능 제안' ? 'support-consent.html' : `mailto:${config.email}${subject ? '?subject='+encodeURIComponent('[Adequora Writer] '+subject)+(body?'&body='+encodeURIComponent(body):'') : ''}`;
 export const sampleLink = (type = 'html') => encodeURI(type === 'html' ? config.sampleHtml : config.sampleAdq);
 const brand = () => `<a class="brand" href="index.html" aria-label="Adequora Writer 홈"><img src="assets/app-icon.webp" width="38" height="38" alt=""><span>Adequora <span class="brand-light">Writer</span></span></a>`;
 export function header(active) {
   const links = [['index','제품 소개','index.html'],['download','다운로드','download.html'],['guide','사용 가이드','guide.html'],['support','지원','support.html']];
-  return `<a class="skip-link" href="#main">본문으로 건너뛰기</a><header class="site-header"><div class="container header-inner">${brand()}<button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="main-nav">${icon('menu')}<span>메뉴</span></button><nav id="main-nav" class="main-nav" aria-label="주 메뉴">${links.map(([id,text,href])=>`<a href="${href}"${id===active?' aria-current="page"':''}>${text}</a>`).join('')}<a class="button button-small nav-cta" href="download.html">${icon('windows')}<span>${config.storeUrl?'Windows용 다운로드':'Windows용 앱'}</span></a></nav></div></header>`;
+  return `<a class="skip-link" href="#main">본문으로 건너뛰기</a><header class="site-header"><div class="container header-inner">${brand()}<button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="main-nav">${icon('menu')}<span>메뉴</span></button><nav id="main-nav" class="main-nav" aria-label="주 메뉴">${links.map(([id,text,href])=>`<a href="${href}"${id===active?' aria-current="page"':''}>${text}</a>`).join('')}<a class="button button-small nav-cta" href="download.html">${icon('windows')}<span>${release.released?'Windows용 다운로드':'Windows용 앱'}</span></a></nav></div></header>`;
 }
 export function footer() {
-  return `<footer class="site-footer"><div class="container"><div class="footer-top"><div>${brand()}<p>생각과 자료가 모이고,<br>나의 기록이 이어지는 곳.</p></div><div class="footer-links"><div><span>제품</span><a href="index.html#features">주요 기능</a><a href="download.html">출시·다운로드 안내</a><a href="index.html#sample">샘플 문서</a></div><div><span>도움말</span><a href="guide.html">사용 가이드</a><a href="support.html#faq">자주 묻는 질문</a><a href="${mail()}">이메일 문의 ${icon('external')}</a></div></div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} ZinniaShark. Adequora Writer.</span><div><a href="privacy.html">웹사이트 개인정보 안내</a><span class="footer-platform">${icon('windows')} Made for Windows</span></div></div></div></footer>`;
+  return `<footer class="site-footer"><div class="container"><div class="footer-top"><div>${brand()}<p>생각과 자료가 모이고,<br>나의 기록이 이어지는 곳.</p></div><div class="footer-links"><div><span>제품</span><a href="index.html#features">주요 기능</a><a href="download.html">출시·다운로드 안내</a><a href="index.html#sample">샘플 문서</a></div><div><span>도움말</span><a href="guide.html">사용 가이드</a><a href="installation.html">설치·시작 안내</a><a href="troubleshooting.html">문제 해결</a><a href="releases.html">버전 소식</a><a href="policies.html">정책·라이선스</a><a href="support.html#faq">자주 묻는 질문</a><a href="${mail()}">이메일 문의 ${icon('external')}</a></div></div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} 지니아샥(ZINNIASHARK). Adequora Writer.<br>대표 이대식 · 사업자등록번호 690-07-03662</span><div><a href="privacy.html">웹사이트 개인정보 안내</a><a href="app-privacy.html">${policyStatus('app-privacy')==='final'?'앱 개인정보처리방침':'앱 개인정보 초안'}</a><span class="footer-platform">${icon('windows')} Made for Windows</span></div></div></div></footer>`;
 }
 export function shell(page, content) {
   const title=page.id==='index'?'Adequora Writer — 글과 자료를 한 문서에':`${page.title} — Adequora Writer`;
-  return `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(title)}</title><meta name="description" content="${esc(page.description)}"><meta name="theme-color" content="#f9fafc"><meta property="og:type" content="website"><meta property="og:locale" content="ko_KR"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(page.description)}"><link rel="icon" type="image/png" href="assets/favicon.png"><link rel="stylesheet" href="assets/style.css"><script src="assets/site.js" defer></script></head><body data-page="${page.id}">${header(page.id)}<main id="main" tabindex="-1">${content}</main>${footer()}<div class="toast" role="status" aria-live="polite" hidden></div></body></html>`;
+  const publicUrl=config.publicSiteUrl ? new URL(`${page.id}.html`,config.publicSiteUrl).href : null;
+  const sharing=publicUrl ? `<link rel="canonical" href="${esc(publicUrl)}"><meta property="og:url" content="${esc(publicUrl)}"><meta property="og:image" content="${esc(new URL('assets/app-editor-1.0.png',config.publicSiteUrl).href)}"><meta property="og:image:alt" content="Adequora Writer의 실제 문서 편집 화면">` : '';
+  return `<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(title)}</title><meta name="description" content="${esc(page.description)}">${page.policy && page.policyStatus!=='final'?'<meta name="robots" content="noindex,follow">':''}<meta name="theme-color" content="#f9fafc">${sharing}<meta property="og:type" content="website"><meta property="og:locale" content="ko_KR"><meta property="og:title" content="${esc(title)}"><meta property="og:description" content="${esc(page.description)}"><link rel="icon" type="image/png" href="assets/favicon.png"><link rel="stylesheet" href="assets/style.css"><script src="assets/site.js" defer></script></head><body data-page="${page.id}">${header(page.id)}<main id="main" tabindex="-1">${content}</main>${footer()}<div class="toast" role="status" aria-live="polite" hidden></div></body></html>`;
 }
 export const eyebrow = (text, dot = false) => `<p class="eyebrow">${dot?'<span class="status-dot"></span>':''}${text}</p>`;
 export function pageIntro(kicker,title,description) {
   return `<section class="page-intro container">${eyebrow(kicker)}<h1>${title}</h1><p class="intro-copy">${description}</p></section>`;
 }
 export function cta() {
-  return `<section class="bottom-cta container"><div class="cta-copy">${eyebrow('YOUR NEXT CHAPTER')}<h2>다음 기록을 위한<br>새로운 시작.</h2><p>Adequora Writer가 곧 Microsoft Store에서 찾아옵니다.</p></div><a class="button" href="download.html">출시 안내 보기 ${icon('arrow')}</a><span class="cta-drawing" aria-hidden="true">Aa<span>생각을 담다.</span></span></section>`;
+  return `<section class="bottom-cta container"><div class="cta-copy">${eyebrow('YOUR NEXT CHAPTER')}<h2>다음 기록을 위한<br>새로운 시작.</h2><p>${release.summary}</p></div><a class="button" href="download.html">${release.action} ${icon('arrow')}</a><span class="cta-drawing" aria-hidden="true">Aa<span>생각을 담다.</span></span></section>`;
 }
 export const faqs = [
   ['어떤 Windows 환경에서 사용할 수 있나요?','Windows 10 22H2 x64와 Windows 11 x64를 대상으로 개발·호환성 검증을 진행하고 있습니다. Microsoft Store 출시 버전의 최종 시스템 요구 사항은 공개 시 다운로드 페이지에 안내합니다. macOS·모바일·웹 편집기는 현재 제공하지 않습니다.','Windows 시스템 설치 호환'],
-  ['앱은 어디에서 다운로드하나요?','Microsoft Store를 통한 배포를 준비하고 있습니다. 아직 공개 다운로드 링크는 제공하지 않으며, Store 페이지가 공개되면 이 사이트에서 연결합니다.','스토어 다운로드 출시 설치'],
-  ['무료인가요? 가격과 출시일이 궁금해요.','가격, 라이선스와 정확한 출시일은 아직 공개하지 않았습니다. 확정된 정보는 다운로드 페이지와 Microsoft Store의 제품 페이지에 안내할 예정입니다.','가격 무료 유료 구독 출시일'],
+  ['앱은 어디에서 다운로드하나요?',release.downloadAnswer,'스토어 다운로드 출시 설치'],
+  ['무료인가요? 가격과 출시일이 궁금해요.',release.priceAnswer,'가격 무료 유료 구독 출시일'],
   ['인터넷 연결 없이 문서를 작성할 수 있나요?','클라우드 업로드를 전제로 하지 않는 로컬 파일 중심 앱입니다. 문서는 내 PC의 파일로 열고 편집·저장합니다. Store 설치·업데이트 등 배포 서비스의 이용에는 네트워크가 필요할 수 있습니다.','오프라인 인터넷 클라우드 로컬'],
   ['Word·한글·PDF 파일도 열거나 저장할 수 있나요?','현재 지원하는 문서 형식은 ADQ2/논리 v3의 .adq 파일입니다. DOCX·HWP/HWPX·PDF·Markdown 가져오기·내보내기는 현재 지원 범위에 포함되지 않습니다.','docx hwp hwpx pdf markdown 호환 파일 형식'],
   ['이미지·오디오·영상은 문서와 함께 저장되나요?','PNG·JPEG·GIF 이미지, MP3 오디오, MP4 비디오를 삽입할 수 있습니다. 삽입한 미디어는 .adq 파일 안에 포함됩니다. 다른 PC에서는 호환되는 Adequora Writer와 해당 미디어를 재생할 수 있는 환경이 필요합니다.','이미지 사진 mp3 mp4 gif jpeg png 미디어 소리 영상'],

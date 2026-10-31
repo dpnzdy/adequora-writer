@@ -5,6 +5,7 @@ import { pages } from '../src/pages.mjs';
 import { shell } from '../src/components.mjs';
 import { config } from '../src/config.mjs';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+if(config.publicSiteUrl && (!/^https:\/\/[^\s"<>]+\/$/.test(config.publicSiteUrl))) throw new Error('Use the confirmed HTTPS site base URL with a trailing slash.');
 if(config.storeUrl && (!config.storeUrl.startsWith('https://') || /[\s"<>]/.test(config.storeUrl))) throw new Error('Use a valid official HTTPS Store URL.');
 await Promise.all([config.sampleAdq,config.sampleHtml].map(f=>stat(path.join(root,f))));
 for(const page of pages){
