@@ -26,4 +26,19 @@ for(const page of pages){
   }
 }
 if(!release.released){const download=await readFile(path.join(root,'download.html'),'utf8');assert.match(download,/출시 준비 중/);assert.match(download,/<button[^>]+disabled/);assert.ok(!download.includes('href="https://apps.microsoft.com/detail/'));}
+else {
+  const record=JSON.parse(await readFile(path.join(root,`content/releases/${release.version}.json`),'utf8'));
+  assert.equal(record.storeUrl,release.storeUrl);
+  assert.equal(record.releaseDate,release.date);
+  assert.equal(record.priceKRW,0,'Current release copy describes a free app');
+  for(const id of ['index','download','support','installation','releases','policies']) {
+    const html=await readFile(path.join(root,id+'.html'),'utf8');
+    assert.ok(!/출시 준비 중|출시일은 아직|무료 제공을 준비|공개 전에 확정|공개 시 다운로드/.test(html),`${id}: outdated pre-release copy`);
+    assert.ok(html.includes(release.version),`${id}: current public version`);
+  }
+  for(const id of ['index','download','installation','releases']) {
+    const html=await readFile(path.join(root,id+'.html'),'utf8');
+    assert.ok(html.includes(`href="${release.storeUrl}" target="_blank" rel="noopener" data-store-link`),`${id}: direct official Store link`);
+  }
+}
 console.log(`PASS: ${pages.length} pages, ${links} local links/assets, metadata, navigation, Store release state.`);

@@ -32,14 +32,15 @@ const paths = {
 };
 export const icon = (name, cls = '') => `<svg class="icon ${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name] || paths.file}</svg>`;
 export const mail = (subject = '', body = '') => subject==='의견 및 기능 제안' ? 'support-consent.html' : `mailto:${config.email}${subject ? '?subject='+encodeURIComponent('[Adequora Writer] '+subject)+(body?'&body='+encodeURIComponent(body):'') : ''}`;
+export const releaseLink = () => `href="${esc(release.actionUrl)}"${release.released?' target="_blank" rel="noopener" data-store-link':''}`;
 export const sampleLink = (type = 'html') => encodeURI(type === 'html' ? config.sampleHtml : config.sampleAdq);
 const brand = () => `<a class="brand" href="index.html" aria-label="Adequora Writer 홈"><img src="assets/app-icon.webp" width="38" height="38" alt=""><span>Adequora <span class="brand-light">Writer</span></span></a>`;
 export function header(active) {
   const links = [['index','제품 소개','index.html'],['download','다운로드','download.html'],['guide','사용 가이드','guide.html'],['support','지원','support.html']];
-  return `<a class="skip-link" href="#main">본문으로 건너뛰기</a><header class="site-header"><div class="container header-inner">${brand()}<button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="main-nav">${icon('menu')}<span>메뉴</span></button><nav id="main-nav" class="main-nav" aria-label="주 메뉴">${links.map(([id,text,href])=>`<a href="${href}"${id===active?' aria-current="page"':''}>${text}</a>`).join('')}<a class="button button-small nav-cta" href="download.html">${icon('windows')}<span>${release.released?'Windows용 다운로드':'Windows용 앱'}</span></a></nav></div></header>`;
+  return `<a class="skip-link" href="#main">본문으로 건너뛰기</a><header class="site-header"><div class="container header-inner">${brand()}<button class="menu-toggle" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="main-nav">${icon('menu')}<span>메뉴</span></button><nav id="main-nav" class="main-nav" aria-label="주 메뉴">${links.map(([id,text,href])=>`<a href="${href}"${id===active?' aria-current="page"':''}>${text}</a>`).join('')}<a class="button button-small nav-cta" ${releaseLink()}>${icon('windows')}<span>${release.released?'Windows용 다운로드':'Windows용 앱'}</span></a></nav></div></header>`;
 }
 export function footer() {
-  return `<footer class="site-footer"><div class="container"><div class="footer-top"><div>${brand()}<p>생각과 자료가 모이고,<br>나의 기록이 이어지는 곳.</p></div><div class="footer-links"><div><span>제품</span><a href="index.html#features">주요 기능</a><a href="download.html">출시·다운로드 안내</a><a href="index.html#sample">샘플 문서</a></div><div><span>도움말</span><a href="guide.html">사용 가이드</a><a href="installation.html">설치·시작 안내</a><a href="troubleshooting.html">문제 해결</a><a href="releases.html">버전 소식</a><a href="policies.html">정책·라이선스</a><a href="support.html#faq">자주 묻는 질문</a><a href="${mail()}">이메일 문의 ${icon('external')}</a></div></div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} 지니아샥(ZINNIASHARK). Adequora Writer.<br>대표 이대식 · 사업자등록번호 690-07-03662</span><div><a href="privacy.html">웹사이트 개인정보 안내</a><a href="app-privacy.html">${policyStatus('app-privacy')==='final'?'앱 개인정보처리방침':'앱 개인정보 초안'}</a><span class="footer-platform">${icon('windows')} Made for Windows</span></div></div></div></footer>`;
+  return `<footer class="site-footer"><div class="container"><div class="footer-top"><div>${brand()}<p>생각과 자료가 모이고,<br>나의 기록이 이어지는 곳.</p></div><div class="footer-links"><div><span>제품</span><a href="index.html#features">주요 기능</a><a href="download.html">다운로드·설치 안내</a><a href="index.html#sample">샘플 문서</a></div><div><span>도움말</span><a href="guide.html">사용 가이드</a><a href="installation.html">설치·시작 안내</a><a href="troubleshooting.html">문제 해결</a><a href="releases.html">버전 소식</a><a href="policies.html">정책·라이선스</a><a href="support.html#faq">자주 묻는 질문</a><a href="${mail()}">이메일 문의 ${icon('external')}</a></div></div></div><div class="footer-bottom"><span>© ${new Date().getFullYear()} 지니아샥(ZINNIASHARK). Adequora Writer.<br>대표 이대식 · 사업자등록번호 690-07-03662</span><div><a href="privacy.html">웹사이트 개인정보 안내</a><a href="app-privacy.html">${policyStatus('app-privacy')==='final'?'앱 개인정보처리방침':'앱 개인정보 초안'}</a><span class="footer-platform">${icon('windows')} Made for Windows</span></div></div></div></footer>`;
 }
 export function shell(page, content) {
   const title=page.id==='index'?'Adequora Writer — 글과 자료를 한 문서에':`${page.title} — Adequora Writer`;
@@ -52,19 +53,19 @@ export function pageIntro(kicker,title,description) {
   return `<section class="page-intro container">${eyebrow(kicker)}<h1>${title}</h1><p class="intro-copy">${description}</p></section>`;
 }
 export function cta() {
-  return `<section class="bottom-cta container"><div class="cta-copy">${eyebrow('YOUR NEXT CHAPTER')}<h2>다음 기록을 위한<br>새로운 시작.</h2><p>${release.summary}</p></div><a class="button" href="download.html">${release.action} ${icon('arrow')}</a><span class="cta-drawing" aria-hidden="true">Aa<span>생각을 담다.</span></span></section>`;
+  return `<section class="bottom-cta container"><div class="cta-copy">${eyebrow('YOUR NEXT CHAPTER')}<h2>다음 기록을 위한<br>새로운 시작.</h2><p>${release.summary}</p></div><a class="button" ${releaseLink()}>${release.action} ${icon('arrow')}</a><span class="cta-drawing" aria-hidden="true">Aa<span>생각을 담다.</span></span></section>`;
 }
 export const faqs = [
-  ['어떤 Windows 환경에서 사용할 수 있나요?','Windows 10 22H2 x64와 Windows 11 x64를 대상으로 개발·호환성 검증을 진행하고 있습니다. Microsoft Store 출시 버전의 최종 시스템 요구 사항은 공개 시 다운로드 페이지에 안내합니다. macOS·모바일·웹 편집기는 현재 제공하지 않습니다.','Windows 시스템 설치 호환'],
+  ['어떤 Windows 환경에서 사용할 수 있나요?',release.systemAnswer,'Windows 시스템 설치 호환'],
   ['앱은 어디에서 다운로드하나요?',release.downloadAnswer,'스토어 다운로드 출시 설치'],
-  ['무료인가요? 가격과 출시일이 궁금해요.',release.priceAnswer,'가격 무료 유료 구독 출시일'],
+  ['무료인가요? 출시 정보가 궁금해요.',release.priceAnswer,'가격 무료 유료 구독 출시일'],
   ['인터넷 연결 없이 문서를 작성할 수 있나요?','클라우드 업로드를 전제로 하지 않는 로컬 파일 중심 앱입니다. 문서는 내 PC의 파일로 열고 편집·저장합니다. Store 설치·업데이트 등 배포 서비스의 이용에는 네트워크가 필요할 수 있습니다.','오프라인 인터넷 클라우드 로컬'],
   ['Word·한글·PDF 파일도 열거나 저장할 수 있나요?','현재 지원하는 문서 형식은 ADQ2/논리 v3의 .adq 파일입니다. DOCX·HWP/HWPX·PDF·Markdown 가져오기·내보내기는 현재 지원 범위에 포함되지 않습니다.','docx hwp hwpx pdf markdown 호환 파일 형식'],
   ['이미지·오디오·영상은 문서와 함께 저장되나요?','PNG·JPEG·GIF 이미지, MP3 오디오, MP4 비디오를 삽입할 수 있습니다. 삽입한 미디어는 .adq 파일 안에 포함됩니다. 다른 PC에서는 호환되는 Adequora Writer와 해당 미디어를 재생할 수 있는 환경이 필요합니다.','이미지 사진 mp3 mp4 gif jpeg png 미디어 소리 영상'],
   ['작업 이어하기와 파일 저장은 어떻게 다른가요?','Ctrl+S는 변경 내용을 원본 .adq 파일에 반영합니다. 작업 이어하기는 작업을 주기적으로, 그리고 정상 종료 시 보존해 다음 실행에서 편집을 이어가도록 돕습니다. 이 PC의 현재 Windows 사용자에 적용되며, 강제 종료·전원 장애에서는 마지막 보존 이후 입력이 남지 않을 수 있습니다.','저장 자동 저장 복구 이어하기 백업'],
   ['다른 기기에서도 작업을 이어갈 수 있나요?','현재의 작업 이어하기는 이 PC·현재 Windows 사용자에서 동작합니다. 클라우드 동기화나 다른 기기 간 자동 이어하기는 제공하지 않습니다. 파일을 다른 PC로 옮겨 열려면 호환되는 앱이 필요합니다.','동기화 기기 pc 이동 클라우드'],
   ['문서 비밀번호를 잊었어요. 어떻게 하나요?','문서 내용과 포함 자산을 비밀번호로 암호화합니다. 비밀번호를 잊으면 작업 보존본만으로 암호를 해제할 수 없습니다. 문서에 설정한 비밀번호를 안전하게 보관해주세요.','암호 비밀번호 분실 보안'],
-  ['문서 용량이나 열린 문서 수에 제한이 있나요?','현재 개발판의 일반 실행 기준은 열린 문서 10개, 문서 파일 및 압축 해제 합계 예산 512MiB, 개별 자산 128MiB입니다. 형식·이미지·표시 자원 등의 추가 한도도 적용되며, 같은 크기의 모든 문서에서 동일한 성능을 보장하지는 않습니다. 최종 배포판의 범위는 출시 시 안내합니다.','용량 크기 제한 대용량 탭'],
+  ['문서 용량이나 열린 문서 수에 제한이 있나요?','문서·자산 크기, 열린 문서 수와 메모리·표시 자원에 한도가 적용됩니다. 파일 크기만으로 열기 가능 여부를 판단할 수 없으며, 같은 크기의 모든 문서에서 동일한 성능을 보장하지 않습니다. 용량 제한 안내가 나오면 작업을 저장하고 불필요한 탭을 닫은 뒤 안내 내용을 확인해주세요.','용량 크기 제한 대용량 탭'],
   ['미디어가 재생되지 않으면 어떻게 하나요?','지원 형식과 문서·자산의 용량을 확인하고, 원본 파일이 Windows에서 정상적으로 재생되는지 살펴보세요. 문제가 계속되면 앱 버전, Windows 버전, 파일 형식과 오류 메시지를 이메일로 알려주세요.','재생 오류 코덱 소리 영상 문제'],
   ['탭을 바꾸거나 앱을 재시작한 뒤 실행 취소가 되지 않아요.','현재 앱은 실제 탭 전환에 성공하면 이전 탭의 Undo/Redo 기록을 초기화합니다. 앱을 재시작할 때도 실행 취소 기록은 새로 시작합니다. 중요한 변경 전에는 사본을 저장해두세요.','undo redo 실행 취소 되돌리기 ctrl z'],
 ];

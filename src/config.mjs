@@ -2,10 +2,11 @@
 export const config = {
   name: 'Adequora Writer',
   email: 'dpnzdy@zinniashark.com',
-  releaseStatus: 'coming-soon',
+  releaseStatus: 'released',
   plannedVersion: '1.0',
-  storeUrl: null,
-  releaseVersion: null,
+  storeUrl: 'https://apps.microsoft.com/detail/9NKD9SB9HXMM',
+  releaseVersion: '1.0.1.0',
+  releaseDate: '2026-11-03',
   publicSiteUrl: 'https://dpnzdy.github.io/adequora-writer/',
   policies: {
     'app-privacy': { status: 'final', effectiveDate: '2026-11-01', file: 'APP-PRIVACY-1.0.md' },

@@ -1,0 +1,22 @@
+{
+  "version": "1.0.1.0",
+  "releaseDate": "2026-11-03",
+  "storeUrl": "https://apps.microsoft.com/detail/9NKD9SB9HXMM",
+  "publisher": "ZINNIASHARK",
+  "priceKRW": 0,
+  "minimumWindowsBuild": 19045,
+  "architecture": "x64",
+  "verifiedMarket": "KR",
+  "verifiedOn": "2026-11-03",
+  "sources": {
+    "publicListing": "Official Microsoft Store product page, Korean / KR market",
+    "releaseDateUtc": "2026-11-03T03:29:36.0072257Z",
+    "package": "AdequoraWriter-1.0.1.0-x64.msix, current published submission viewed in Microsoft Partner Center"
+  },
+  "notes": [
+    "Microsoft Store에 처음 공개한 무료 Windows 문서 작성 앱입니다.",
+    "글·이미지·오디오·비디오를 .adq 문서에 함께 저장합니다.",
+    "서식 편집, 표·목록·인용·코드 블록, 목차와 여러 문서 탭을 제공합니다.",
+    "문서 암호 설정과 이 PC에서의 로컬 작업 이어하기를 제공합니다."
+  ]
+}

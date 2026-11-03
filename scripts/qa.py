@@ -102,7 +102,29 @@ with sync_playwright() as p:
     page.wait_for_function('Math.abs(document.getElementById("save").getBoundingClientRect().top-90)<25')
     assert page.locator('.guide-sidebar a[href="#save"]').get_attribute('aria-current')=='location'
     page.goto(BASE+'download.html',wait_until='networkidle')
-    assert page.locator('.store-button').is_disabled()
+    if settings['releaseStatus']=='released':
+        store=page.locator('a.store-button')
+        assert store.get_attribute('href')==settings['storeUrl']
+        assert store.get_attribute('target')=='_blank'
+        assert store.get_attribute('rel')=='noopener'
+        assert settings['releaseVersion'] in page.locator('main').inner_text()
+        assert page.locator('time').first.get_attribute('datetime')==settings['releaseDate']
+        assert '출시 준비 중' not in page.locator('main').inner_text()
+        page.goto(BASE,wait_until='networkidle')
+        assert page.locator('.hero-actions [data-store-link]').get_attribute('href')==settings['storeUrl']
+        # Check the actual anchor navigation without opening the external Store application.
+        context.route('https://apps.microsoft.com/detail/**',lambda route:route.fulfill(status=200,content_type='text/html',body='<title>Store link navigation check</title>'))
+        with page.expect_popup() as store_popup:
+            page.locator('.hero-actions [data-store-link]').click()
+        store_page=store_popup.value
+        store_page.wait_for_load_state('load')
+        assert store_page.url==settings['storeUrl']
+        store_page.close()
+        page.goto(BASE+'releases.html',wait_until='networkidle')
+        assert settings['releaseVersion'] in page.locator('h2').first.inner_text()
+        assert page.locator('time').get_attribute('datetime')==settings['releaseDate']
+    else:
+        assert page.locator('.store-button').is_disabled()
     page.goto(BASE+'app-privacy.html',wait_until='networkidle')
     assert page.locator('.policy-draft').count()==0
     assert page.locator('meta[name=robots]').count()==0
@@ -141,5 +163,5 @@ with sync_playwright() as p:
     assert not errors,errors
     browser.close()
 
-(QA/'report.json').write_text(json.dumps({'pages':reports,'tests':['document demo tabs + keyboard','media playback + pause when switching','current sample popup','ADQ download hash matches','FAQ search/reset/keyboard','clipboard email copy','mobile navigation + Escape','guide anchor and active section','honest Store pre-release state'],'consoleErrors':errors},ensure_ascii=False,indent=2),encoding='utf-8')
+(QA/'report.json').write_text(json.dumps({'pages':reports,'tests':['document demo tabs + keyboard','media playback + pause when switching','current sample popup','ADQ download hash matches','FAQ search/reset/keyboard','clipboard email copy','mobile navigation + Escape','guide anchor and active section','Store release state + version/date + direct download navigation','policy draft/final separation','optional support consent'],'consoleErrors':errors},ensure_ascii=False,indent=2),encoding='utf-8')
 print(f'PASS: {len(names)} pages at 4 widths, media playback, samples, search, clipboard, mobile navigation, guide anchors. No browser errors.')

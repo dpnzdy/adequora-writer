@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import { config } from './config.mjs';
 import { esc, pageIntro } from './components.mjs';
 import { policyStatus } from './policy-status.mjs';
+import { release } from './release.mjs';
 
 const documents = [
   ['app-privacy','앱 개인정보처리방침','APP-PRIVACY-1.0.md','로컬 문서·작업 데이터, 지원 문의와 Zoho 메일의 처리 내용을 설명합니다.'],
@@ -56,5 +57,5 @@ export const policyPages=documents.map(([id,title,file,description])=>({
 export const policyIndex={
   id:'policies',policy:true,policyStatus:'draft',title:'정책·라이선스',
   description:'문서별 적용일과 검토 상태를 확인하세요. 앱 개인정보처리방침은 2026년 11월 1일부터 적용합니다.',
-  render:()=>`${pageIntro('POLICIES & LICENSE','사용 조건을<br>분명하게.','문서별로 시행일과 검토 상태를 구분합니다.')}<article class="container legal-content policy-content"><p>앱 개인정보처리방침은 2026년 11월 1일부터 적용합니다. 이용약관·라이선스·지원 수명주기 문서는 아직 검토 초안입니다.</p><div class="policy-cards">${documents.map(([id,title,,description])=>`<a href="${id}.html"><h2>${title}</h2><p>${description}</p><span>${policyStatus(id)==='final'?'2026년 11월 1일 시행 · 본문 보기':'검토 초안 보기'} →</span></a>`).join('')}</div><section><h2>현재와 향후 계획</h2><p>1.0은 무료 제공을 준비하고 있습니다. 2.0 Free/Pro는 향후 계획이며 현재 판매·평가 기능을 제공하지 않습니다. 앱 개인정보처리방침의 확정은 다른 약관의 확정이나 Store 출시를 뜻하지 않습니다.</p></section><section id="before-publication"><h2>다른 정책의 검토 항목</h2><p>이용약관·라이선스·지원 정책의 시행일, 최종 지원 OS와 지원 운영 시간, 실제 주요 버전 업그레이드 절차는 해당 문서에서 별도로 확정합니다.</p></section><section><h2>운영자와 연락처</h2><p>지니아샥(ZINNIASHARK) · 대표 이대식<br>사업자등록번호 690-07-03662<br>대한민국 거제시 진목2길 1, 404호(옥포동, 주은아트빌라)<br>개인정보 보호 담당자 이대식<br>문의 <a href="mailto:${config.email}">${config.email}</a><br>통신판매업: 해당 없음(현재 무료 1.0 배포 기준)</p></section><p><a href="privacy.html">웹사이트 개인정보 안내</a>는 앱 개인정보처리방침과 적용 범위가 다릅니다.</p></article>`,
+  render:()=>`${pageIntro('POLICIES & LICENSE','사용 조건을<br>분명하게.','문서별로 시행일과 검토 상태를 구분합니다.')}<article class="container legal-content policy-content"><p>앱 개인정보처리방침은 2026년 11월 1일부터 적용합니다. 이용약관·라이선스·지원 수명주기 문서는 아직 검토 초안입니다.</p><div class="policy-cards">${documents.map(([id,title,,description])=>`<a href="${id}.html"><h2>${title}</h2><p>${description}</p><span>${policyStatus(id)==='final'?'2026년 11월 1일 시행 · 본문 보기':'검토 초안 보기'} →</span></a>`).join('')}</div><section><h2>현재와 향후 계획</h2><p>${release.summary} 2.0 Free/Pro는 향후 계획이며 현재 판매·평가 기능을 제공하지 않습니다. Store 게시와 각 정책 문서의 확정 여부는 별도로 관리합니다.</p></section><section id="before-publication"><h2>다른 정책의 검토 항목</h2><p>이용약관·라이선스·지원 정책의 시행일, 지원 운영 시간과 향후 지원 범위, 실제 주요 버전 업그레이드 절차는 해당 문서에서 별도로 확정합니다.</p></section><section><h2>운영자와 연락처</h2><p>지니아샥(ZINNIASHARK) · 대표 이대식<br>사업자등록번호 690-07-03662<br>대한민국 거제시 진목2길 1, 404호(옥포동, 주은아트빌라)<br>개인정보 보호 담당자 이대식<br>문의 <a href="mailto:${config.email}">${config.email}</a><br>통신판매업: 해당 없음(현재 무료 1.0 배포 기준)</p></section><p><a href="privacy.html">웹사이트 개인정보 안내</a>는 앱 개인정보처리방침과 적용 범위가 다릅니다.</p></article>`,
 };
