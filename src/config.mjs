@@ -1,6 +1,9 @@
 // Store URL, release version and prices must come from the confirmed public listing.
 export const config = {
-  name: 'Adequora Writer',
+  name: 'ZinniaShark Note',
+  previousName: 'Adequora Writer',
+  renameStatus: 'pending',
+  firstReleaseDate: '2026-11-03',
   email: 'dpnzdy@zinniashark.com',
   releaseStatus: 'released',
   plannedVersion: '1.0',

@@ -1,11 +1,13 @@
-# Adequora Writer 최종 사용자 사용권 계약(EULA)
+# ZinniaShark Note 최종 사용자 사용권 계약(EULA)
+
+제품명 정정(2026-11-06): ZinniaShark Note의 이전 이름은 Adequora Writer입니다. 이름 정정은 기존 처리 방식·사용 조건·지원 정책의 변경을 뜻하지 않습니다.
 
 문서 버전: 0.1 · 상태: 출시 검토 초안
 시행일: [출시 전 확정: YYYY-MM-DD]
 
 ## 1. 계약 당사자와 적용 범위
 
-이 계약은 Adequora Writer의 제공자와 소프트웨어를 사용하는 개인 또는 조직 사이의 사용권 조건을 정합니다.
+이 계약은 ZinniaShark Note의 제공자와 소프트웨어를 사용하는 개인 또는 조직 사이의 사용권 조건을 정합니다.
 
 - 제공자 법적 명칭: 지니아샥(ZINNIASHARK)
 - 게시자 표시명: ZINNIASHARK

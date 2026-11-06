@@ -1,14 +1,16 @@
-# Adequora Writer 1.0 앱 개인정보처리방침
+# ZinniaShark Note 1.0 앱 개인정보처리방침
+
+제품명 정정(2026-11-06): ZinniaShark Note의 이전 이름은 Adequora Writer입니다. 이름 정정은 기존 처리 방식·사용 조건·지원 정책의 변경을 뜻하지 않습니다.
 
 문서 버전: 1.0
 
 시행일: 2026년 11월 1일
 
-공식 방침 주소: [Adequora Writer 앱 개인정보처리방침](https://dpnzdy.github.io/adequora-writer/app-privacy.html)
+공식 방침 주소: [ZinniaShark Note 앱 개인정보처리방침](https://dpnzdy.github.io/adequora-writer/app-privacy.html)
 
 ## 1. 적용 범위와 처리 주체
 
-이 방침은 Windows용 Adequora Writer 1.0 무료판의 로컬 문서 처리와 제품 관련 지원 문의에 적용합니다. 앱 계정 등록은 필요하지 않습니다. 웹사이트 이용에 대한 안내는 [웹사이트 개인정보 안내](privacy.html)에서 별도로 제공합니다.
+이 방침은 Windows용 ZinniaShark Note 1.0 무료판의 로컬 문서 처리와 제품 관련 지원 문의에 적용합니다. 앱 계정 등록은 필요하지 않습니다. 웹사이트 이용에 대한 안내는 [웹사이트 개인정보 안내](privacy.html)에서 별도로 제공합니다.
 
 | 구분 | 내용 |
 |---|---|

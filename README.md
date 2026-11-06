@@ -1,4 +1,4 @@
-# Adequora Writer website
+# ZinniaShark Note website
 
 한국어 정적 제품 사이트입니다. 앱은 Microsoft Store에 공개되어 있으며, 이 프로젝트는 공식 다운로드·설치·지원 안내를 제공합니다. 웹사이트 변경의 원격 반영은 GitHub Pages 배포 상태와 별개로 확인합니다.
 
@@ -63,6 +63,10 @@ npm run check:release
 ```
 
 앱 출시 전 사이트를 먼저 공개할 때도 releaseStatus는 coming-soon으로 유지할 수 있습니다. GitHub Pages 등에서 루트 HTML·assets·docs·.nojekyll을 상대 경로 그대로 제공합니다. 원본 위치로 docs 폴더를 선택하지 마세요. src·scripts·content·.qa는 배포에 필요하지 않습니다.
+
+## 이름 변경 준비
+
+공식 제품명을 ZinniaShark Note로 정리합니다. 이전 이름은 Adequora Writer입니다. 기존 URL·Store 제품 ID·샘플 원본은 유지합니다. renameStatus는 실제 Store 공개 확인 후 published로 바꿉니다. 아래 공개 버전·패키지명은 이름 변경 전 확인 기록이며 새 후보의 게시를 뜻하지 않습니다.
 
 ## 현재 Store 공개 정보
 

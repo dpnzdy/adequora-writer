@@ -1,4 +1,6 @@
-# Adequora Writer 지원 수명주기 및 업데이트 정책
+# ZinniaShark Note 지원 수명주기 및 업데이트 정책
+
+제품명 정정(2026-11-06): ZinniaShark Note의 이전 이름은 Adequora Writer입니다. 이름 정정은 기존 처리 방식·사용 조건·지원 정책의 변경을 뜻하지 않습니다.
 
 문서 버전: 0.1 · 상태: 출시 검토 초안
 시행일: [출시 전 확정: YYYY-MM-DD]

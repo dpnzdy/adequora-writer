@@ -11,6 +11,10 @@ assert.throws(()=>releaseInfo({...config,releaseStatus:'released',releaseDate:'2
 assert.throws(()=>releaseInfo({...config,releaseStatus:'released',storeUrl:'https://apps.microsoft.com.evil.example/detail/9NKD9SB9HXMM'}));
 assert.throws(()=>releaseInfo({...config,releaseStatus:'released',storeUrl:'https://someone@apps.microsoft.com/detail/9NKD9SB9HXMM'}));
 assert.equal(releaseInfo({...config,releaseStatus:'released',storeUrl:storeUrl+'?hl=ko-KR&gl=KR'}).storeUrl,storeUrl);
+const laterRelease=releaseInfo({...config,releaseVersion:'1.0.2.0',releaseDate:'2026-11-06'});
+assert.equal(laterRelease.firstReleaseDate,'2026-11-03','An update must preserve the first publication date');
+assert.equal(laterRelease.date,'2026-11-06');
+assert.ok(laterRelease.priceAnswer.includes('2026년 11월 3일 Microsoft Store에 처음 공개'));
 const output=execFileSync(process.execPath,['--input-type=module','-e',`
   import {config} from './src/config.mjs';
   config.releaseStatus='released'; config.storeUrl='${storeUrl}'; config.releaseVersion='1.0.1.0'; config.releaseDate='2026-11-03';

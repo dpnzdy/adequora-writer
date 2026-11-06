@@ -34,7 +34,7 @@ if (consentSection) {
       diagnostic ? '진단 자료는 담당자가 요청한 범위만 별도로 첨부합니다. 원본 문서·비밀번호·민감정보는 보내지 않습니다.' : '제안 내용:',
       '',
     ].filter(Boolean).join('\n');
-    compose.href = `mailto:${consentSection.dataset.email}?subject=${encodeURIComponent('[Adequora Writer] '+topic)}&body=${encodeURIComponent(body)}`;
+    compose.href = `mailto:${consentSection.dataset.email}?subject=${encodeURIComponent('[ZinniaShark Note] '+topic)}&body=${encodeURIComponent(body)}`;
   }
   purpose.addEventListener('change', () => updateConsent(true));
   [collect, overseas, caseInput].forEach(control => control.addEventListener('input', () => updateConsent()));
