@@ -11,7 +11,7 @@
 - `privacy.html`: 웹사이트 개인정보 안내. 앱 방침과 별개입니다.
 - `installation.html`: Windows x64·WebView2·저장 폴더·첫 문서·업데이트와 제거 준비.
 - `troubleshooting.html`: 실행·저장·열기·미디어·암호·이어하기 문제 해결.
-- `releases.html`: 1.0.1.0 첫 공개 기록과 현재 알려진 제한.
+- `releases.html`: 1.0.2.0 이름 변경 업데이트와 현재 알려진 제한.
 - `policies.html`: 정책 목록·운영자·공개 전 확정 항목.
 - `app-privacy.html`: 2026년 11월 1일 시행 앱 개인정보처리방침.
 - `eula.html`, `license.html`, `lifecycle.html`: 이용약관·무료 배포·지원 정책 검토 초안.
@@ -42,7 +42,7 @@ python scripts/qa.py
 - `src/pages.mjs`: 기존 5개 페이지 본문.
 - `src/components.mjs`: 공통 메뉴·푸터·메타데이터·FAQ.
 - `src/config.mjs`, `src/release.mjs`: 연락처·출시 상태·버전·공식 링크.
-- `content/releases/1.0.1.0.json`: 확인한 첫 공개 버전의 정보·출처·주요 기능 기록.
+- `content/releases/`: 1.0.1.0 첫 공개 이력과 1.0.2.0 이름 변경 업데이트의 확인 정보·출처·변경 기록.
 - `src/help-pages.mjs`: 실제 화면·설치·문제 해결·버전 안내.
 - `src/policies.mjs`, `content/policies/`: 정책 화면과 Markdown 원문.
 - `assets/style.css`, `assets/site.js`: 반응형 스타일·메뉴·탭·검색·주소 복사·가이드 목차.
