@@ -1,0 +1,24 @@
+{
+  "version": "1.0.2.0",
+  "productName": "ZinniaShark Note",
+  "previousName": "Adequora Writer",
+  "releaseDate": "2026-11-06",
+  "storeUrl": "https://apps.microsoft.com/detail/9NKD9SB9HXMM",
+  "publisher": "ZINNIASHARK",
+  "priceKRW": 0,
+  "minimumWindowsBuild": 19045,
+  "architecture": "x64",
+  "verifiedMarket": "KR",
+  "verifiedOn": "2026-11-06",
+  "sources": {
+    "publicListing": "Official Microsoft Store app and public catalog, Korean / KR market; web product-page cache propagation checked separately",
+    "publicationRequestedAtUtc": "2026-11-06T08:55:29Z",
+    "verifiedAtUtc": "2026-11-06T09:06:49.770177+00:00",
+    "package": "AdequoraWriter-1.0.2.0-x64.msix; same Store product and identity; actual Store-installed 1.0.2.0 verified"
+  },
+  "notes": [
+    "Adequora Writer의 이름이 ZinniaShark Note로 변경되었습니다.",
+    "앱 제목·안내·시작 메뉴 표시와 제품 소개를 새 이름으로 정리했습니다.",
+    "기존 .adq 문서 형식, 패키지 식별자와 데이터 저장 위치를 유지합니다."
+  ]
+}

@@ -64,15 +64,15 @@ npm run check:release
 
 앱 출시 전 사이트를 먼저 공개할 때도 releaseStatus는 coming-soon으로 유지할 수 있습니다. GitHub Pages 등에서 루트 HTML·assets·docs·.nojekyll을 상대 경로 그대로 제공합니다. 원본 위치로 docs 폴더를 선택하지 마세요. src·scripts·content·.qa는 배포에 필요하지 않습니다.
 
-## 이름 변경 준비
+## 이름 변경 완료
 
-공식 제품명을 ZinniaShark Note로 정리합니다. 이전 이름은 Adequora Writer입니다. 기존 URL·Store 제품 ID·샘플 원본은 유지합니다. renameStatus는 실제 Store 공개 확인 후 published로 바꿉니다. 아래 공개 버전·패키지명은 이름 변경 전 확인 기록이며 새 후보의 게시를 뜻하지 않습니다.
+공식 제품명은 ZinniaShark Note입니다. 이전 이름은 Adequora Writer입니다. 기존 URL·Store 제품 ID·샘플 원본은 유지합니다. 2026-11-06 실제 Store 공개와 1.0.1.0→1.0.2.0 업데이트 검증을 확인해 renameStatus를 published로 바꿨습니다. 공개 버전·패키지명은 아래 최신 Store 공개 정보를 따릅니다.
 
 ## 현재 Store 공개 정보
 
 - 공식 주소: https://apps.microsoft.com/detail/9NKD9SB9HXMM
-- 공개 패키지: `AdequoraWriter-1.0.1.0-x64.msix`.
-- 버전: `1.0.1.0`, 배포일: `2026-11-03`.
+- 공개 패키지: `AdequoraWriter-1.0.2.0-x64.msix`.
+- 버전: `1.0.2.0`, 배포일: `2026-11-06`. 최초 공개일은 `2026-11-03`으로 유지합니다.
 - 가격: 무료. 게시자: ZINNIASHARK.
 - 최소 OS: Store 등록 기준 Windows 10 빌드 19045.0 이상. 공개 패키지 아키텍처 x64, Windows 10/11 Desktop.
 - 대한민국 Store의 설치 가능 상태를 확인했습니다. 다른 지역 전체의 제공 여부를 단정하지 않습니다.
@@ -87,6 +87,6 @@ npm run check:release
 
 ## 자료와 처리 방식
 
-앱 아이콘과 예제 미디어는 제공된 제품 자료에서 가져왔습니다. 표지의 구성 예시와 실제 앱 화면을 구분해 표시합니다. `assets/app-editor-1.0.png`는 공개 샘플 문서로 격리 실행한 Windows 1.0 출시 후보의 1600×1000 원본 화면입니다. SHA-256: BA8F957DC08A3C28CADA501643F32CECC2ECAF59AF3EF304AD664376BB9CA904.
+앱 아이콘과 예제 미디어는 제공된 제품 자료에서 가져왔습니다. 표지의 구성 예시와 실제 앱 화면을 구분해 표시합니다. `assets/app-editor-1.0.2.png`는 공개 샘플 문서로 격리 실행한 Windows 1.0.2 이름 변경 버전의 1600×1000 원본 화면입니다. SHA-256: 8432613C61CFE9EA37D7B0BACAD53522B83827610C611F4051320048523C7631.
 
 샘플 ADQ·독립형 HTML 원본은 그대로 연결합니다. 영상은 탭 선택 후 로드하며 오디오·샘플 HTML은 요청 전 미리 다운로드하지 않습니다. 외부 폰트·CDN·방문 분석·서버 문의 양식·추적 쿠키는 사용하지 않습니다. 이메일 문의는 사용자의 메일 앱으로 연결합니다.
