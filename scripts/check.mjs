@@ -20,7 +20,7 @@ for(const page of pages){
   for(const [,reference]of html.matchAll(/(?:href|src|data-lazy-video)="([^"]+)"/g)){
     if(/^(https?:|mailto:|data:)/.test(reference)) continue;
     const [file,hash]=reference.split('#');
-    const target=file?path.resolve(root,decodeURI(file)):path.join(root,page.id+'.html');
+    const target=file?path.resolve(root,decodeURI(file.split('?')[0])):path.join(root,page.id+'.html');
     assert.ok((await stat(target)).isFile(),`${page.id}: ${reference}`);links++;
     if(hash){const content=await readFile(target,'utf8');assert.ok(content.includes(`id="${hash}"`),`Missing anchor ${reference}`);}
   }
