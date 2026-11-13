@@ -1,6 +1,14 @@
 // Optional materials: collect two explicit choices locally, then let the visitor compose mail.
 const consentSection = document.querySelector('[data-support-consent]');
 if (consentSection) {
+  const platform = document.querySelector('#consent-platform');
+  const policyLink = document.querySelector('[data-consent-policy]');
+  const policyDate = document.querySelector('[data-consent-policy-date]');
+  const policies = {
+    windows: { name:'Windows', date:'2026-11-01', label:'2026년 11월 1일', href:'app-privacy.html' },
+    android: { name:'Android', date:'2026-11-13', label:'2026년 11월 13일', href:'android-app-privacy.html' },
+  };
+  if (new URLSearchParams(location.search).get('platform') === 'android') platform.value = 'android';
   const purpose = document.querySelector('#consent-purpose');
   const caseInput = document.querySelector('#consent-case');
   const collect = document.querySelector('#consent-collect');
@@ -12,6 +20,10 @@ if (consentSection) {
     diagnostic: '항목: 회신 이메일 주소·문의 번호 및 별도 제공하는 앱/OS 버전·오류 정보·개인정보를 제거한 화면과 최소 재현 사본. 목적: 요청한 오류의 재현·해결. 보유 기간: 해당 문의 종결 후 90일 이내이며 불필요해지거나 동의를 철회하면 법적 보존 사유가 없는 한 먼저 삭제합니다.',
   };
   function updateConsent(reset = false) {
+    const policy = policies[platform.value];
+    policyLink.href = policy.href;
+    policyLink.textContent = `${policy.name} 앱 개인정보처리방침`;
+    policyDate.textContent = `시행일 ${policy.label} / 버전 1.0`;
     const diagnostic = purpose.value === 'diagnostic';
     if (reset) { collect.checked = false; overseas.checked = false; }
     document.querySelector('[data-diagnostic-fields]').hidden = !diagnostic;
@@ -27,7 +39,9 @@ if (consentSection) {
     const body = [
       `자료 종류: ${diagnostic ? '선택 진단 자료' : '의견·기능 제안'}`,
       diagnostic ? `문의 번호: ${caseInput.value.trim()}` : '',
-      '개인정보처리방침: 1.0 / 시행일 2026-11-01',
+      `이용하는 앱: ${policy.name}`,
+      `개인정보처리방침: ${policy.name} 1.0 / 시행일 ${policy.date}`,
+      `공식 방침: ${new URL(policy.href, location.href).href}`,
       `동의 확인일: ${consentDate} (한국 시간)`,
       '수집·이용 동의: 안내된 항목·목적·보유 기간과 거부 영향을 확인하고 동의합니다.',
       '국외 이전 별도 동의: 안내된 수탁자·국가·항목·목적·기간·시기·방법과 거부 영향을 확인하고 별도로 동의합니다.',
@@ -37,6 +51,7 @@ if (consentSection) {
     compose.href = `mailto:${consentSection.dataset.email}?subject=${encodeURIComponent('[ZinniaShark Note] '+topic)}&body=${encodeURIComponent(body)}`;
   }
   purpose.addEventListener('change', () => updateConsent(true));
+  platform.addEventListener('change', () => updateConsent(true));
   [collect, overseas, caseInput].forEach(control => control.addEventListener('input', () => updateConsent()));
   window.addEventListener('pageshow', () => updateConsent(true));
   updateConsent(true);

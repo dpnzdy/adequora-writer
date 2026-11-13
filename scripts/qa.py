@@ -160,6 +160,28 @@ with sync_playwright() as p:
     page.locator('#consent-overseas').uncheck()
     assert compose.is_hidden()
     assert compose.get_attribute('href') is None
+    # Android policy and platform-specific consent must not inherit Windows dates.
+    page.goto(BASE+'android-app-privacy.html',wait_until='networkidle')
+    assert page.locator('.policy-draft').count()==0
+    assert page.locator('meta[name=robots]').count()==0
+    assert '2026년 11월 13일' in page.locator('main').inner_text()
+    assert '카메라·마이크' in page.locator('main').inner_text()
+    assert page.locator('link[rel=canonical]').get_attribute('href').endswith('/android-app-privacy.html')
+    page.goto(BASE+'support-consent.html?platform=android',wait_until='networkidle')
+    assert page.locator('#consent-platform').input_value()=='android'
+    assert compose.is_hidden()
+    assert page.locator('[data-consent-policy]').get_attribute('href')=='android-app-privacy.html'
+    page.locator('#consent-collect').check()
+    page.locator('#consent-overseas').check()
+    body=parse_qs(urlparse(compose.get_attribute('href')).query)['body'][0]
+    assert 'Android 1.0 / 시행일 2026-11-13' in body
+    assert '/android-app-privacy.html' in body
+    page.locator('#consent-platform').select_option('windows')
+    assert compose.is_hidden()
+    assert compose.get_attribute('href') is None
+    assert not page.locator('#consent-collect').is_checked()
+    assert not page.locator('#consent-overseas').is_checked()
+    assert '2026년 11월 1일' in page.locator('[data-consent-policy-date]').inner_text()
     assert not errors,errors
     browser.close()
 

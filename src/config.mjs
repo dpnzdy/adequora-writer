@@ -13,6 +13,7 @@ export const config = {
   publicSiteUrl: 'https://dpnzdy.github.io/adequora-writer/',
   policies: {
     'app-privacy': { status: 'final', effectiveDate: '2026-11-01', file: 'APP-PRIVACY-1.0.md' },
+    'android-app-privacy': { status: 'final', effectiveDate: '2026-11-13', file: 'APP-PRIVACY-ANDROID-1.0.md' },
     eula: { status: 'draft', file: 'EULA.md' },
     license: { status: 'draft', file: 'DISTRIBUTION-AND-LICENSE-POLICY.md' },
     lifecycle: { status: 'draft', file: 'SUPPORT-LIFECYCLE-AND-UPDATES.md' },

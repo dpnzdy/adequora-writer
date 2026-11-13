@@ -5,7 +5,8 @@ import { policyStatus } from './policy-status.mjs';
 import { release } from './release.mjs';
 
 const documents = [
-  ['app-privacy','앱 개인정보처리방침','APP-PRIVACY-1.0.md','로컬 문서·작업 데이터, 지원 문의와 Zoho 메일의 처리 내용을 설명합니다.'],
+  ['app-privacy','Windows 앱 개인정보처리방침','APP-PRIVACY-1.0.md','Windows 로컬 문서·작업 데이터, 지원 문의와 Zoho 메일의 처리 내용을 설명합니다.'],
+  ['android-app-privacy','Android 앱 개인정보처리방침','APP-PRIVACY-ANDROID-1.0.md','Android 문서·미디어·카메라·마이크·파일 접근과 지원 문의의 처리 내용을 설명합니다.'],
   ['eula','소프트웨어 이용약관','EULA.md','무료 사용권, 이용자 문서의 권리와 이용 조건을 설명합니다.'],
   ['license','무료 배포 및 라이선스 정책','DISTRIBUTION-AND-LICENSE-POLICY.md','1.0 무료 기능과 향후 Free/Pro·평가 종료 시 문서 처리 원칙을 구분합니다.'],
   ['lifecycle','지원 수명주기 및 업데이트 정책','SUPPORT-LIFECYCLE-AND-UPDATES.md','지원 기간, 업데이트, 지원 종료와 주요 버전 업그레이드 절차를 설명합니다.'],
@@ -50,12 +51,24 @@ function markdown(source) {
 function draftNotice() {
   return `<div class="policy-draft" role="note"><strong>이 문서는 검토 초안입니다.</strong><p>시행일과 운영 조건을 확정하기 전이며 현재 시행 중인 최종 약관이 아닙니다. 문서에 포함된 향후 버전 계획은 현재 제공·판매되는 기능을 뜻하지 않습니다.</p><a href="policies.html#before-publication">검토 중인 정책 보기</a></div>`;
 }
+function effectiveLabel(id) {
+  const date=config.policies[id]?.effectiveDate;
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(date||''))throw Error(`Missing policy date: ${id}`);
+  const [year,month,day]=date.split('-').map(Number);
+  return `${year}년 ${month}월 ${day}일`;
+}
+function platformLinks(id) {
+  if(!['app-privacy','android-app-privacy'].includes(id))return '';
+  return `<nav class="policy-platforms" aria-label="플랫폼별 개인정보처리방침"><a href="app-privacy.html"${id==='app-privacy'?' aria-current="true"':''}>Windows 방침</a> · <a href="android-app-privacy.html"${id==='android-app-privacy'?' aria-current="true"':''}>Android 방침</a> · <a href="privacy.html">웹사이트 안내</a></nav>`;
+}
 export const policyPages=documents.map(([id,title,file,description])=>({
   id,title,description,policy:true,policyStatus:policyStatus(id),
-  render:()=>`${pageIntro('PRODUCT POLICIES',title,description)}<article class="container legal-content policy-content">${policyStatus(id)==='draft'?draftNotice():'<p class="policy-effective">시행일: 2026년 11월 1일 · 문서 버전 1.0</p>'}${markdown(readFileSync(new URL(`../content/policies/${file}`,import.meta.url),'utf8'))}<a href="policies.html">정책·라이선스 목록으로</a></article>`,
+  socialImage:id==='android-app-privacy'?'assets/app-icon.webp?v=20261108':undefined,
+  socialImageAlt:id==='android-app-privacy'?'ZinniaShark Note 앱 아이콘':undefined,
+  render:()=>`${pageIntro('PRODUCT POLICIES',title,description)}<article class="container legal-content policy-content">${platformLinks(id)}${policyStatus(id)==='draft'?draftNotice():`<p class="policy-effective">시행일: ${effectiveLabel(id)} · 문서 버전 1.0</p>`}${markdown(readFileSync(new URL(`../content/policies/${file}`,import.meta.url),'utf8'))}<a href="policies.html">정책·라이선스 목록으로</a></article>`,
 }));
 export const policyIndex={
   id:'policies',policy:true,policyStatus:'draft',title:'정책·라이선스',
-  description:'문서별 적용일과 검토 상태를 확인하세요. 앱 개인정보처리방침은 2026년 11월 1일부터 적용합니다.',
-  render:()=>`${pageIntro('POLICIES & LICENSE','사용 조건을<br>분명하게.','문서별로 시행일과 검토 상태를 구분합니다.')}<article class="container legal-content policy-content"><p>앱 개인정보처리방침은 2026년 11월 1일부터 적용합니다. 이용약관·라이선스·지원 수명주기 문서는 아직 검토 초안입니다.</p><div class="policy-cards">${documents.map(([id,title,,description])=>`<a href="${id}.html"><h2>${title}</h2><p>${description}</p><span>${policyStatus(id)==='final'?'2026년 11월 1일 시행 · 본문 보기':'검토 초안 보기'} →</span></a>`).join('')}</div><section><h2>현재와 향후 계획</h2><p>${release.summary} 2.0 Free/Pro는 향후 계획이며 현재 판매·평가 기능을 제공하지 않습니다. Store 게시와 각 정책 문서의 확정 여부는 별도로 관리합니다.</p></section><section id="before-publication"><h2>다른 정책의 검토 항목</h2><p>이용약관·라이선스·지원 정책의 시행일, 지원 운영 시간과 향후 지원 범위, 실제 주요 버전 업그레이드 절차는 해당 문서에서 별도로 확정합니다.</p></section><section><h2>운영자와 연락처</h2><p>지니아샥(ZINNIASHARK) · 대표 이대식<br>사업자등록번호 690-07-03662<br>대한민국 거제시 진목2길 1, 404호(옥포동, 주은아트빌라)<br>개인정보 보호 담당자 이대식<br>문의 <a href="mailto:${config.email}">${config.email}</a><br>통신판매업: 해당 없음(현재 무료 1.0 배포 기준)</p></section><p><a href="privacy.html">웹사이트 개인정보 안내</a>는 앱 개인정보처리방침과 적용 범위가 다릅니다.</p></article>`,
+  description:'Windows·Android 앱의 개인정보처리방침과 웹사이트 안내, 문서별 적용일·검토 상태를 확인하세요.',
+  render:()=>`${pageIntro('POLICIES & LICENSE','사용 조건을<br>분명하게.','문서별로 시행일과 검토 상태를 구분합니다.')}<article class="container legal-content policy-content"><p>Windows 앱 개인정보처리방침은 2026년 11월 1일, Android 앱 개인정보처리방침은 2026년 11월 13일부터 적용합니다. Android 앱은 Google Play 공개 전이며 방침 공개가 앱 출시를 뜻하지 않습니다. 이용약관·라이선스·지원 수명주기 문서는 아직 검토 초안입니다.</p><div class="policy-cards">${documents.map(([id,title,,description])=>`<a href="${id}.html"><h2>${title}</h2><p>${description}</p><span>${policyStatus(id)==='final'?`${effectiveLabel(id)} 시행 · 본문 보기`:'검토 초안 보기'} →</span></a>`).join('')}</div><section><h2>현재와 향후 계획</h2><p>${release.summary} 2.0 Free/Pro는 향후 계획이며 현재 판매·평가 기능을 제공하지 않습니다. Store 게시와 각 정책 문서의 확정 여부는 별도로 관리합니다.</p></section><section id="before-publication"><h2>다른 정책의 검토 항목</h2><p>이용약관·라이선스·지원 정책의 시행일, 지원 운영 시간과 향후 지원 범위, 실제 주요 버전 업그레이드 절차는 해당 문서에서 별도로 확정합니다.</p></section><section><h2>운영자와 연락처</h2><p>지니아샥(ZINNIASHARK) · 대표 이대식<br>사업자등록번호 690-07-03662<br>대한민국 거제시 진목2길 1, 404호(옥포동, 주은아트빌라)<br>개인정보 보호 담당자 이대식<br>문의 <a href="mailto:${config.email}">${config.email}</a><br>통신판매업: 해당 없음(현재 무료 1.0 배포 기준)</p></section><p><a href="privacy.html">웹사이트 개인정보 안내</a>는 앱 개인정보처리방침과 적용 범위가 다릅니다.</p></article>`,
 };
