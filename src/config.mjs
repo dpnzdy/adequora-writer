@@ -10,7 +10,7 @@ export const config = {
   storeUrl: 'https://apps.microsoft.com/detail/9NKD9SB9HXMM',
   releaseVersion: '1.0.2.0',
   releaseDate: '2026-11-06',
-  publicSiteUrl: 'https://dpnzdy.github.io/adequora-writer/',
+  publicSiteUrl: 'https://dpnzdy.github.io/ZinniaSharkNote/',
   policies: {
     'app-privacy': { status: 'final', effectiveDate: '2026-11-01', file: 'APP-PRIVACY-1.0.md' },
     'android-app-privacy': { status: 'final', effectiveDate: '2026-11-13', file: 'APP-PRIVACY-ANDROID-1.0.md' },

@@ -4,13 +4,13 @@
 
 시행일: 2026년 11월 13일
 
-공식 방침 주소: [ZinniaShark Note Android 개인정보처리방침](https://dpnzdy.github.io/adequora-writer/android-app-privacy.html)
+공식 방침 주소: [ZinniaShark Note Android 개인정보처리방침](https://dpnzdy.github.io/ZinniaSharkNote/android-app-privacy.html)
 
 ## 1. 적용 범위와 처리 주체
 
 이 방침은 Android용 ZinniaShark Note의 로컬 문서 처리와 제품 관련 지원 문의에 적용합니다. 앱 계정 등록, 광고 및 앱 내 구매 기능은 없습니다. Android 앱의 Google Play 공개 배포는 준비 단계이며, 개인정보처리방침 공개가 앱 출시나 심사 승인을 뜻하지는 않습니다.
 
-Windows용 앱의 데이터 처리에는 [Windows 앱 개인정보처리방침](https://dpnzdy.github.io/adequora-writer/app-privacy.html)이 적용됩니다. 웹사이트 방문에 대한 안내는 [웹사이트 개인정보 안내](https://dpnzdy.github.io/adequora-writer/privacy.html)에서 별도로 제공합니다.
+Windows용 앱의 데이터 처리에는 [Windows 앱 개인정보처리방침](https://dpnzdy.github.io/ZinniaSharkNote/app-privacy.html)이 적용됩니다. 웹사이트 방문에 대한 안내는 [웹사이트 개인정보 안내](https://dpnzdy.github.io/ZinniaSharkNote/privacy.html)에서 별도로 제공합니다.
 
 | 구분 | 내용 |
 |---|---|
@@ -74,7 +74,7 @@ Windows용 앱의 데이터 처리에는 [Windows 앱 개인정보처리방침](
 
 이름·전화번호·주소·문서 원본·문서 비밀번호는 일반 문의의 필수 항목으로 요구하지 않습니다. 민감정보·고유식별정보·다른 사람의 개인정보를 보내지 마십시오.
 
-선택 진단 자료와 일반 지원에 필요하지 않은 제안은 [선택 자료 제공 안내](https://dpnzdy.github.io/adequora-writer/support-consent.html?platform=android)에서 항목·목적·기간과 국외 이전 사항을 먼저 확인하고, 수집·이용과 국외 이전에 각각 동의한 후 전달합니다. 진단 자료는 담당자가 요청한 최소 범위만 별도 메일로 전달하며 일반 문의 메일에 반복 첨부하지 않습니다. 단순한 메일 발송이나 사이트 방문을 별도 동의로 간주하지 않습니다.
+선택 진단 자료와 일반 지원에 필요하지 않은 제안은 [선택 자료 제공 안내](https://dpnzdy.github.io/ZinniaSharkNote/support-consent.html?platform=android)에서 항목·목적·기간과 국외 이전 사항을 먼저 확인하고, 수집·이용과 국외 이전에 각각 동의한 후 전달합니다. 진단 자료는 담당자가 요청한 최소 범위만 별도 메일로 전달하며 일반 문의 메일에 반복 첨부하지 않습니다. 단순한 메일 발송이나 사이트 방문을 별도 동의로 간주하지 않습니다.
 
 선택 자료 제공과 동의는 거부할 수 있고, 거부해도 무료 문서 편집과 일반 지원 문의를 이용할 수 있습니다. 다만 추가 자료 없이는 특정 문제를 재현하기 어려울 수 있습니다. 동의 철회는 담당 이메일로 요청할 수 있습니다. 지원 목적과 관계없는 자료나 동의 없이 보낸 불필요한 자료는 추가 분석에 이용하지 않고 최소한의 확인 후 삭제합니다.
 

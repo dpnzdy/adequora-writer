@@ -6,7 +6,7 @@
 
 시행일: 2026년 11월 1일
 
-공식 방침 주소: [ZinniaShark Note 앱 개인정보처리방침](https://dpnzdy.github.io/adequora-writer/app-privacy.html)
+공식 방침 주소: [ZinniaShark Note 앱 개인정보처리방침](https://dpnzdy.github.io/ZinniaSharkNote/app-privacy.html)
 
 ## 1. 적용 범위와 처리 주체
 

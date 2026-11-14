@@ -56,7 +56,7 @@ build는 HTML 15개를 생성합니다. 생성 HTML을 직접 편집하지 마�
 
 1. 앱 개인정보처리방침에는 사용자 확정 시행일·계약 법인·보유 기간과 확인한 실제 메일 설정을 반영했습니다. 운영 절차·삭제일 관리 도구는 `../docs-adequora-writer/operations/`에 있으며 공개 사이트 배포물에 포함하지 않습니다.
 2. 다른 약관은 해당 원문을 확정한 뒤 그 문서의 status와 effectiveDate만 변경합니다. final 문서에 초안 문구가 남거나 draft 문서의 초안 표시가 사라지면 공개 준비 검사가 거부합니다.
-3. 공개 대상은 GitHub Pages의 `https://dpnzdy.github.io/adequora-writer/`이며 앱 방침은 `app-privacy.html`입니다. 배포 후 HTTP 상태뿐 아니라 본문·시행일·공시 내용과 익명 접근을 확인합니다.
+3. 공개 대상은 GitHub Pages의 `https://dpnzdy.github.io/ZinniaSharkNote/`이며 앱 방침은 `app-privacy.html`입니다. 배포 후 HTTP 상태뿐 아니라 본문·시행일·공시 내용과 익명 접근을 확인합니다.
 4. 아래 공개 준비 검사를 실행합니다. final 정책의 미확정 내용과 초안의 표시 상태를 각각 검사합니다. 앱 공개와 웹사이트 공개 상태는 별개입니다.
 
 ```sh
@@ -67,7 +67,9 @@ npm run check:release
 
 ## 이름 변경 완료
 
-공식 제품명은 ZinniaShark Note입니다. 이전 이름은 Adequora Writer입니다. 기존 URL·Store 제품 ID·샘플 원본은 유지합니다. 2026-11-06 실제 Store 공개와 1.0.1.0→1.0.2.0 업데이트 검증을 확인해 renameStatus를 published로 바꿨습니다. 공개 버전·패키지명은 아래 최신 Store 공개 정보를 따릅니다.
+공식 제품명은 ZinniaShark Note입니다. 이전 이름은 Adequora Writer입니다. Store 제품 ID·샘플 원본은 유지합니다. 2026-11-06 실제 Store 공개와 1.0.1.0→1.0.2.0 업데이트 검증을 확인해 renameStatus를 published로 바꿨습니다. 공개 버전·패키지명은 아래 최신 Store 공개 정보를 따릅니다.
+
+2026-11-14 GitHub 저장소 이름을 `dpnzdy/ZinniaSharkNote`로 변경하여 공개 기본 주소를 `https://dpnzdy.github.io/ZinniaSharkNote/`로 정정했습니다. 정책 사본의 링크도 새 주소를 사용합니다. 형제 저장소의 정책 원문을 다시 동기화할 때에는 웹사이트 사본의 공개 URL이 이 주소와 일치하는지 확인한 뒤 빌드하세요.
 
 ## 현재 Store 공개 정보
 
@@ -95,7 +97,7 @@ npm run check:release
 
 ## Android 공개 개인정보처리방침
 
-Windows 방침 원문·시행일과 다른 약관의 draft 상태는 유지합니다. Android 방침은 `content/policies/APP-PRIVACY-ANDROID-1.0.md`, 상태·시행일은 `src/config.mjs`의 `android-app-privacy` 항목에서 관리합니다. 공개 주소는 https://dpnzdy.github.io/adequora-writer/android-app-privacy.html 입니다.
+Windows 방침 원문·시행일과 다른 약관의 draft 상태는 유지합니다. Android 방침은 `content/policies/APP-PRIVACY-ANDROID-1.0.md`, 상태·시행일은 `src/config.mjs`의 `android-app-privacy` 항목에서 관리합니다. 공개 주소는 https://dpnzdy.github.io/ZinniaSharkNote/android-app-privacy.html 입니다.
 
 Android 원문은 형제 앱 저장소 `../ZinniaShark-Note-V2.0/docs/android/APP-PRIVACY-ANDROID-1.0.md`이며 앱 내부 평문 방침과 이 사이트의 Markdown 사본을 다음 명령으로 함께 생성합니다. 원문을 먼저 수정하고 생성 사본을 직접 수정하지 마세요. 이 사이트의 단독 빌드에는 형제 저장소가 필요하지 않습니다.
 
